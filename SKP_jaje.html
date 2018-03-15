@@ -26,6 +26,7 @@ var objava;
 var brojIgara = 0;
 var rezIgrac = 0;
 var rezKomp = 0;
+
 //var rezUk = " Rezultat igrača je: " + rezIgrac + " Rezultat računala je: " +rezKomp;
 
    function randomIzbor (){
@@ -48,6 +49,8 @@ function usporedba(unos){
 		var kompjuterIzbor = randomIzbor();
 		if(kompjuterIzbor === "skare"){
 		 brojIgara +=1;
+		 rezKomp +=0.5;
+		 rezIgrac +=0.5;
 		 objava = "Kompjuter je odabrao isto škare - neriješeno! " + " Rezultat igrača je: " + rezIgrac + " Rezultat računala je: " + rezKomp;
 		 }
 		 else if(kompjuterIzbor === "papir"){
@@ -66,6 +69,8 @@ function usporedba(unos){
 		var kompjuterIzbor = randomIzbor();
 		if(kompjuterIzbor === "kamen"){
 		 brojIgara +=1;
+		 rezKomp +=0.5;
+		 rezIgrac +=0.5;
 		 objava = "Kompjuter je odabrao isto kamen - tko tebe kamenom, ti njega kamenom - neriješeno! " + " Rezultat igrača je: " + rezIgrac + " Rezultat računala je: " +rezKomp;
 		 }
 		 else if(kompjuterIzbor === "skare"){
@@ -84,7 +89,9 @@ function usporedba(unos){
 		var kompjuterIzbor = randomIzbor();
 		if(kompjuterIzbor === "papir"){
 		 brojIgara +=1;
-		 objava = "Kompjuter je odabrao isto papir, dva papira puno mira - neriješeno! " + " Rezultat igrača je: " + rezIgrac + " Rezultat računala je: " +rezKomp;
+		 rezKomp +=0.5;
+		 rezIgrac +=0.5;
+		 objava = "Kompjuter je odabrao isto papir,  - neriješeno svaki po pola boda! " + " Rezultat igrača je: " + rezIgrac + " Rezultat računala je: " +rezKomp;
 		 }
 		 else if(kompjuterIzbor === "kamen"){
 		 brojIgara +=1;
@@ -98,10 +105,10 @@ function usporedba(unos){
 		 }
 		
   }
-   else if ( unos.toLowerCase() === "uskrsnje jaje"){
+   else if ( unos.toLowerCase() === "easter egg"){
 		 rezIgrac += 10;
 		 brojIgara +=1;
-		 objava = "Odakle ti ovaj podatak? Varanje.." + " Rezultat igrača je: " + rezIgrac + " Rezultat računala je: " +rezKomp;
+		 objava = "Where did you get this? Cheat code.." + " Rezultat igrača je: " + rezIgrac + " Rezultat računala je: " +rezKomp;
   }
   
   else {
@@ -110,12 +117,21 @@ function usporedba(unos){
 }
 function igra(){
 
-var unos = prompt("Što ćeš odigrati, škare, kamen ili papir? (upiši samo jednu riječ) ");
+if(rezIgrac >= 5){
+	alert("You won the game, result is: " + rezIgrac + ":" + rezKomp + " for you!")
+	} else if (rezKomp >= 5){
+	alert("Computer wins by " + rezKomp + ":" + rezIgrac + " machine domination!" );
+	} else {
+	var unos = prompt("Please choose one choice: 'skare' (scissors), 'kamen' (rock)  or 'papir' (paper)? (without quotes, just one word) ");
 
-usporedba(unos);
+	usporedba(unos);
 
-var pozicija = document.getElementById("pozicija");
-pozicija.innerHTML = objava + "   Broj odigranih krugova je: " + brojIgara;
+	var pozicija = document.getElementById("pozicija");
+	pozicija.innerHTML = objava + "   Number of played rounds: " + brojIgara;
+
+	}
+
+
 }
 </script>
 </body>
