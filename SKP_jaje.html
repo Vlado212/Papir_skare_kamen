@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<div>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+<button onclick="igra()">Odigraj novi krug</button>
+</hr>
+<p id = "pozicija">
+
+</p>
+<script>
+
+var objava;
+var brojIgara = 0;
+var rezIgrac = 0;
+var rezKomp = 0;
+//var rezUk = " Rezultat igrača je: " + rezIgrac + " Rezultat računala je: " +rezKomp;
+
+   function randomIzbor (){
+	var ispis;
+    var mat = Math.floor(Math.random() * 3)+1;
+   if (mat === 1){
+     ispis = "skare";
+	 }
+   else if (mat === 2){
+   ispis = "kamen";
+   } else {
+   ispis = "papir";
+   }
+   return ispis;
+   }
+
+function usporedba(unos){
+	//unosimo provjeru za unos "skare"
+	if( unos.toLowerCase() === "skare" | unos.toLowerCase() ==="škare"){
+		var kompjuterIzbor = randomIzbor();
+		if(kompjuterIzbor === "skare"){
+		 brojIgara +=1;
+		 objava = "Kompjuter je odabrao isto škare - neriješeno! " + " Rezultat igrača je: " + rezIgrac + " Rezultat računala je: " + rezKomp;
+		 }
+		 else if(kompjuterIzbor === "papir"){
+		 brojIgara +=1;
+		 rezIgrac +=1;
+		 objava = "Kompjuter je odabrao papir, škare režu papir, pobijedio si! "  + " Rezultat igrača je: " + rezIgrac + " Rezultat računala je: " +rezKomp;
+		 }
+         else {
+         brojIgara +=1;
+		 rezKomp +=1;
+		 objava = "Kompjuter je odabrao kamen, kamen je jači od škara, izgubio si! "  + " Rezultat igrača je: " + rezIgrac + " Rezultat računala je: " +rezKomp;
+		 }
+  }
+  //unosimo provjeru za unos "kamen"
+  else if ( unos.toLowerCase() === "kamen"){
+		var kompjuterIzbor = randomIzbor();
+		if(kompjuterIzbor === "kamen"){
+		 brojIgara +=1;
+		 objava = "Kompjuter je odabrao isto kamen - tko tebe kamenom, ti njega kamenom - neriješeno! " + " Rezultat igrača je: " + rezIgrac + " Rezultat računala je: " +rezKomp;
+		 }
+		 else if(kompjuterIzbor === "skare"){
+		 brojIgara +=1;
+		 rezIgrac +=1;
+		 objava = "Kompjuter je odabrao skare, kamen razbija skare, pobijedio si! "+ " Rezultat igrača je: " + rezIgrac + " Rezultat računala je: " +rezKomp;
+		 }
+         else {
+         brojIgara +=1;
+		 rezKomp +=1;
+		 objava = "Kompjuter je odabrao papir, papir omata kamen, izgubio si! " + " Rezultat igrača je: " + rezIgrac + " Rezultat računala je: " +rezKomp;
+		 }
+  }
+  // provjera za unos "papir"
+  else if ( unos.toLowerCase() === "papir"){
+		var kompjuterIzbor = randomIzbor();
+		if(kompjuterIzbor === "papir"){
+		 brojIgara +=1;
+		 objava = "Kompjuter je odabrao isto papir, dva papira puno mira - neriješeno! " + " Rezultat igrača je: " + rezIgrac + " Rezultat računala je: " +rezKomp;
+		 }
+		 else if(kompjuterIzbor === "kamen"){
+		 brojIgara +=1;
+		 rezIgrac +=1;
+		 objava = "Kompjuter je odabrao kamen, papir omata kamen, pobijedio si! " + " Rezultat igrača je: " + rezIgrac + " Rezultat računala je: " +rezKomp;
+		 }
+         else {
+         brojIgara +=1;
+		 rezKomp +=1;
+		 objava = "Kompjuter je odabrao škare, reze te kao škarama papir, izgubio si! " + " Rezultat igrača je: " + rezIgrac + " Rezultat računala je: " +rezKomp;
+		 }
+		
+  }
+   else if ( unos.toLowerCase() === "uskrsnje jaje"){
+		 rezIgrac += 10;
+		 brojIgara +=1;
+		 objava = "Odakle ti ovaj podatak? Varanje.." + " Rezultat igrača je: " + rezIgrac + " Rezultat računala je: " +rezKomp;
+  }
+  
+  else {
+  alert("Nisi upisao 'škare', 'kamen' ili 'papir'! ");
+  }
+}
+function igra(){
+
+var unos = prompt("Što ćeš odigrati, škare, kamen ili papir? (upiši samo jednu riječ) ");
+
+usporedba(unos);
+
+var pozicija = document.getElementById("pozicija");
+pozicija.innerHTML = objava + "   Broj odigranih krugova je: " + brojIgara;
+}
+</script>
+</body>
+</html>
+
+
